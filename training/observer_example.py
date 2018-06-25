@@ -18,7 +18,6 @@ class GlobalWealth(object):
         print('bound')
         self._observers.append(callback)
 
-
 class Person(object):
     def __init__(self, data):
         self.wealth = 1.0
