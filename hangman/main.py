@@ -1,13 +1,18 @@
-import game
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import random
 import getpass
 import time
-# import player
+
+import game
+import player
 
 # Defined Global variables
 rounds = int()
-player1name = ""
-player2name = ""
+playerOne = None
+PlayerTwo = None
+
 hangman = [
 "   ____",
 "  |    |",
@@ -23,19 +28,19 @@ hangman = [
 
 # Defined Functions
 def welcomeToHangman():
-    # threading.Timer(5.0, welcomeToHangman).start()
+    # Print Welcome Message
     print("Welcome to Hangman")
     for hangmanPart in hangman:
-        time.sleep(0.25)
+        time.sleep(0.1)
         print(hangmanPart)
     print("")
-    print("")
+    print("© by Jason Millsom and Yvo Keller")
     print("")
 
 
 def playerGiveNames():
-    player1name = raw_input("Type in a very flamboyant name: ")
-    player2name = raw_input("Type in an even more flamboyant name: ")
+    playerOne = player.Player(raw_input("Type in a very flamboyant name: "), 1)
+    PlayerTwo = player.Player(raw_input("Type in an even more flamboyant name: "), 2)
 
     print("")
     print("")
@@ -47,7 +52,7 @@ def roundCheck():
         rounds = input("How many rounds would you like to play? ")
 
 def gameProcedure():
-    print("Prepare to get hanged " + player1name + " and " + player2name)
+    print("Prepare to get hanged, " + playerOne.name + " and " + playerTwo.name)
     print("")
     print("")
 
