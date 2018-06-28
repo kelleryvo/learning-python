@@ -1,8 +1,7 @@
-# import game
+import game
 # import player
 
 print("Welcome to Hangman")
-print("Prepare to get hanged")
 print("   ____")
 print("  |    |")
 print("  |    o")
@@ -16,4 +15,11 @@ print("|__________|")
 print("")
 print("")
 print("")
-print("Type in a very flamboyant name: ")
+player1name = raw_input("Type in a very flamboyant name: ")
+player2name = raw_input("Type in an even more flamboyant name: ")
+print("")
+print("")
+rounds = input("How many rounds would you like to play? ")
+print("Prepare to get hanged " + player1name + " and " + player2name)
+
+gameProcess = game.Game(rounds)
