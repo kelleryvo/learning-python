@@ -13,6 +13,9 @@ class Game:
     def setCurrentWord(self, currentWord):
         self.currentWord = currentWord.lower()
 
+        self.currentWordList = []
+        self.currentWordListHidden = []
+
         for letter in self.currentWord:
             self.currentWordList.append(letter + " ")
 
@@ -23,8 +26,8 @@ class Game:
                 self.currentWordListHidden.append("  ")
 
     def showHint(self, progress):
-        chances = [4, 10, 9, 8, 4, 6, 5, 4, 3, 2]
-        
+        chances = [3, 6, 9, 8, 4, 6, 5, 4, 3, 2]
+
         i = 0
         while i < (len(self.currentWordListHidden) - 1):
             i += 1
@@ -38,4 +41,4 @@ class Game:
         for letter in self.currentWordListHidden:
             hiddenWord += letter
 
-        print("Guess this: " + hiddenWord)
+        return hiddenWord

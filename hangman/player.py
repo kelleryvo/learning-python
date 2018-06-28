@@ -5,6 +5,8 @@ class Player:
 
         self.score = 0
 
-    def updateScore(self, score):
-        self.score = score
+    def updateScore(self):
+        self.score += 1
         print(self.name + ", your new score is " + str(self.score) + "!")
+        print("")
+        print("")
