@@ -26,7 +26,7 @@ class Game:
                 self.currentWordListHidden.append("  ")
 
     def showHint(self, progress):
-        chances = [3, 6, 9, 8, 4, 6, 5, 4, 3, 2]
+        chances = [2, 4, 9, 8, 4, 6, 5, 5, 4, 2]
 
         i = 0
         while i < (len(self.currentWordListHidden) - 1):

@@ -7,6 +7,7 @@ import time
 
 import game
 import player
+import colors
 
 # Defined Global variables
 rounds = int()
@@ -22,21 +23,32 @@ hangman = [
 "  |   / \ ",
 " _|_",
 "|   |______",
-"|          |",
 "|__________|"
 ]
 
 # Defined Functions
+def checkOdd(x):
+    if x % 2: #ungrade
+        print("ungerade")
+        return true
+    else: #grade
+        print("gerade")
+        return false
+
 def welcomeToHangman():
+    #variables
+    col = colors.Colors
+
     # Print Welcome Message
-    print("Welcome to Hangman")
+    print(col.BOLD)
+    print("Welcome to Hangman!")
     for hangmanPart in hangman:
         time.sleep(0.05)
         print(hangmanPart)
     print("")
     print("© by Jason Millsom and Yvo Keller")
     print("")
-
+    print(col.ENDC)
 
 def playerGiveNames():
     # Receive User Names
@@ -47,15 +59,20 @@ def playerGiveNames():
     print("")
 
 def roundCheck():
-    rounds = input("How many rounds would you like to play? ")
-    while rounds >= 10:
-        print("The number is higher than 10 or not a number at all")
+    rounds = input("How many rounds would you like to play? (has to be uneven) ")
+    while (rounds >= 10) or (checkOdd(rounds) == false):
+        print("")
+        print("The number is higher than 10, even, or not a number at all")
+        print("")
         rounds = input("How many rounds would you like to play? ")
 
 def gameProcedure():
+    #variables
+    col = colors.Colors
+
     # Receive User Names
-    playerOne = player.Player(raw_input("Type in a very flamboyant name: "), 1)
-    playerTwo = player.Player(raw_input("Type in an even more flamboyant name: "), 2)
+    playerOne = player.Player(raw_input("Type in a very flamboyant name: "))
+    playerTwo = player.Player(raw_input("Type in an even more flamboyant name: "))
 
     print("")
     print("")
@@ -98,14 +115,16 @@ def gameProcedure():
     while i < (gameInstance.rounds):
         i += 1
 
+        filledHangman = []
+
         if i > 1:
             # Change roles
             playerStore = playerFirst
             playerFirst = playerSecond
             playerSecond = playerStore
 
-        print("// Round " + str(i) + " //")
-        time.sleep(0.25)
+        print(col.BOLD + "Round " + str(i) + col.ENDC)
+        time.sleep(0.1)
 
         word = getpass.getpass(playerFirst.name + ", type in a word: ")
         gameInstance.setCurrentWord(word)
@@ -123,19 +142,45 @@ def gameProcedure():
 
             if answer == gameInstance.currentWord:
                 print("")
-                print("Correct")
+                print(col.OKGREEN + "Correct! This round goes to you, " + playerSecond.name + col.ENDC)
                 print("")
 
                 playerSecond.updateScore()
 
                 break
             else:
+                filledHangman.append(hangman[x - 2])
+
                 print("")
-                print("Wrong")
+                for element in filledHangman:
+                    print(element)
+
                 print("")
+
+                if x == 10:
+                    playerFirst.updateScore()
+                    print("")
+                    print("You got hanged, " + playerSecond.name + "... The word was " + gameInstance.currentWord)
+                    print("")
+                    print(col.FAIL + "This round goes to " + playerFirst.name + col.ENDC)
+                    print("")
+
+    # Print Results
+    print(col.HEADER + col.UNDERLINE + "Final Stats:" + col.ENDC)
+    print(playerFirst.name + " - " + str(playerFirst.score) + " points.")
+    print(playerSecond.name + " - " + str(playerSecond.score) + " points")
+    print("")
+
+    if playerFirst.score > playerSecond.score:
+        print(col.OKGREEN + "Congrats, " + playerFirst.name + ", you won this game!" + col.ENDC)
+    else:
+        print(col.OKGREEN + "Congrats, " + playerFirst.name + ", you won this game!" + col.ENDC)
+
+    print("")
+    print("Until next time!")
+    print("")
+
 
 # run Program procedure
 welcomeToHangman()
-#playerGiveNames()
-#roundCheck()
 gameProcedure()
