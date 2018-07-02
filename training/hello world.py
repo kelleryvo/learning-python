@@ -14,6 +14,9 @@ print("|__________|")
 x = 5
 y = 5
 
+str(castedString) = "Wert14"
+int(castedInt) = 3242
+
 print("Type of var x is:")
 print(type(x))
 
@@ -39,13 +42,15 @@ print(b.strip())
 # Arrays and Lists
 c = "These,Are,Some,Values"
 list = c.split(",")
-list.append("Yvo")
+
+list.append("New Value")
 print(list[2])
 print(list[4])
 
+list = str(list.reverse())
+
 print(type(list))
 
-list = str(list.reverse())
 
 print(type(list))
 
@@ -65,7 +70,7 @@ thisdict =	{
   "Birne": "Pear"
 }
 print(thisdict)
-thisdict["Hallo"] = "Hiigh"
+thisdict["Hallo"] = "Guten Tag"
 print(thisdict)
 
 #While Loop
@@ -93,8 +98,12 @@ def print_text(text):
   print(text)
 
 inp = raw_input("Give me a value to print: ")
-print_text(inp)
 
+print(inp)
+
+print("Hello World! We have the year " + str(year))
+
+print_text(inp)
 #Lambda Functions
 print("Lambda Functions")
 

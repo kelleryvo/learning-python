@@ -50,22 +50,6 @@ def welcomeToHangman():
     print("")
     print(col.ENDC)
 
-def playerGiveNames():
-    # Receive User Names
-    playerOne = player.Player(raw_input("Type in a very flamboyant name: "), 1)
-    playerTwo = player.Player(raw_input("Type in an even more flamboyant name: "), 2)
-
-    print("")
-    print("")
-
-def roundCheck():
-    rounds = input("How many rounds would you like to play? (has to be uneven) ")
-    while (rounds >= 10) or (checkOdd(rounds) == false):
-        print("")
-        print("The number is higher than 10, even, or not a number at all")
-        print("")
-        rounds = input("How many rounds would you like to play? ")
-
 def gameProcedure():
     #variables
     col = colors.Colors
@@ -132,7 +116,7 @@ def gameProcedure():
         print("")
 
         # Loop for guesses
-        x = 1
+        x = 0
         while x < 10:
             x += 1
 
@@ -149,7 +133,7 @@ def gameProcedure():
 
                 break
             else:
-                filledHangman.append(hangman[x - 2])
+                filledHangman.append(hangman[x - 1])
 
                 print("")
                 for element in filledHangman:
@@ -174,12 +158,11 @@ def gameProcedure():
     if playerFirst.score > playerSecond.score:
         print(col.OKGREEN + "Congrats, " + playerFirst.name + ", you won this game!" + col.ENDC)
     else:
-        print(col.OKGREEN + "Congrats, " + playerFirst.name + ", you won this game!" + col.ENDC)
+        print(col.OKGREEN + "Congrats, " + playerSecond.name + ", you won this game!" + col.ENDC)
 
     print("")
     print("Until next time!")
     print("")
-
 
 # run Program procedure
 welcomeToHangman()
